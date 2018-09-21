@@ -6,6 +6,10 @@ class TweetContainer extends Component {
     super();
   }
 
+  componentDidMount() {
+    
+  }
+
   handleChange(event, { value }) {
     debugger
   }
