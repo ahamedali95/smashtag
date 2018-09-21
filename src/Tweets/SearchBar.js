@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Search } from 'semantic-ui-react';
+import { connect } from "react-redux";
 
 const SearchBar = (props) => {
   return(
@@ -7,4 +8,4 @@ const SearchBar = (props) => {
   );
 }
 
-export default SearchBar;
+export default connect()(SearchBar);

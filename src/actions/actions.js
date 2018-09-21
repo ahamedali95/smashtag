@@ -1,12 +1,13 @@
-const setUsers = (users) => {
-  return {type: "SET_USERS", payload: users};
-}
-
-const setTweets = (tweets) => {
-  return {type: "SET_TWEETS", payload: tweets};
+const setTweetsAndUsers = (tweets, users) => {
+  return {
+    type: "SET_TWEETS_AND_USERS",
+    payload: {
+      tweets: tweets,
+      users: users
+    }
+  };
 }
 
 module.exports = {
-  setUsers,
-  setTweets
+  setTweetsAndUsers
 };
