@@ -1,44 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Feed, Icon } from 'semantic-ui-react';
+import Tweet from "./Tweet.js";
 
 const TweetCollection = (props) => {
-  console.log("inside tweetcollection", props);
-
-  const tweets = props.tweets.map(tweet => {
-    return (
-      <Feed size="large">
-        <Feed.Event>
-          <Feed.Content>
-            <Feed.Summary>
-              <Feed.User>Elliot Fu</Feed.User>
-            </Feed.Summary>
-          <Feed.Extra text>{tweet.content}</Feed.Extra>
-            <Feed.Meta>
-              <Feed.Like>
-                <Icon name='like' />
-                  0 Likes
-              </Feed.Like>
-            </Feed.Meta>
-          </Feed.Content>
-        </Feed.Event>
-      </Feed>
-    );
-  });
+  //console.log("inside tweetcollection", props);
+  const tweets = props.tweets.map(tweet => <Tweet key={tweet.id} tweet={tweet}/>);
 
   return(
-    <ul>
-      {
-        tweets
-      }
-    </ul>
+    <div>{tweets}</div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    tweets: state.tweets,
-    users: state.users
+    tweets: state.tweets
   };
 }
 
