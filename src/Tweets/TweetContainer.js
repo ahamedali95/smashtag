@@ -18,14 +18,10 @@ class TweetContainer extends Component {
     .then(([tweets, users]) => this.props.setTweetsAndUsers(tweets, users));
   }
 
-  handleChange(event, { value }) {
-    debugger
-  }
-
   render() {
     return(
       <div>
-        <SearchBar handleChange={this.handleChange}/>
+        <SearchBar/>
         <TweetCollection />
       </div>
     );
