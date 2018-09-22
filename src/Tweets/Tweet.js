@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Feed, Icon, Button } from 'semantic-ui-react';
 import { setCurrentTweet, removeCurrentTweet } from "../actions/actions.js";
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
+import TimeAgo from 'timeago-react';
 
 const Tweet = (props) => {
   console.log("inside tweet", props)
   const user = props.users.find(user => {
     return user.id === props.tweet.user_id;
   });
-
-  const postedDate = props.tweet.created_at
 
   return (
     <Feed size="large">
@@ -27,7 +26,7 @@ const Tweet = (props) => {
             </Feed.Like>
             {
               !!props.currentTweet ?
-                <Feed.Date><Moment format="DD-MMM-YYYY">{props.tweet.created_at}</Moment></Feed.Date>
+                <Feed.Date><TimeAgo datetime={props.tweet.created_at} locale='us' /></Feed.Date>
                 :
                 null
             }

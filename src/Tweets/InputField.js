@@ -29,8 +29,8 @@ class InputField extends React.Component {
     fetch("http://localhost:3001/api/v1/tweets", config)
       .then(response => response.json())
       .then(data => {
-        const newTweets = [...this.props.tweets, data];
-        
+        const newTweets = [data, ...this.props.tweets];
+
         this.props.updateTweets(newTweets);
       });
   }

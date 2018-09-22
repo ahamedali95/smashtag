@@ -10,7 +10,8 @@
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.5",
     "redux": "^4.0.0",
-    "semantic-ui-react": "^0.82.5"
+    "semantic-ui-react": "^0.82.5",
+    "timeago-react": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
