@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form } from 'semantic-ui-react';
+import { connect } from "react-redux";
+import updateTweets from "../actions/actions.js";
 
 class InputField extends React.Component {
   constructor() {
@@ -11,14 +13,38 @@ class InputField extends React.Component {
   }
 
   handleSubmit(event) {
-    debugger
+    const body = {
+      content: this.state.content,
+      user_id: 1
+    };
+
+    const config = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    };
+
+    fetch("http://localhost:3001/api/v1/tweets", config)
+      .then(response => response.json())
+      .then(data => {
+        const newTweets = [...this.props.tweets, data];
+        this.props.updateTweets(newTweets);
+      });
+  }
+
+  handleChange(event) {
+    this.setState({
+      content: event.target.value
+    }, () => console.log(this.state.content))
   }
 
   render() {
     return(
       <Form onSubmit={(event) => this.handleSubmit(event)}>
         <Form.Field>
-          <input value={this.state.content} type="text" placeholder="What's happening?" />
+          <input onChange={(event) => this.handleChange(event)} value={this.state.content} type="text" placeholder="What's happening?" />
         </Form.Field>
         <Button type="submit">Submit</Button>
       </Form>
@@ -26,4 +52,18 @@ class InputField extends React.Component {
   }
 }
 
-export default InputField;
+function mapStateToProps(state) {
+  return {
+    tweets: state.tweets
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateTweets: (tweets) => {
+      dispatch(updateTweets(tweets));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputField);

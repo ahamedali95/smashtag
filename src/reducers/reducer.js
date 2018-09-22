@@ -16,6 +16,8 @@ function reducer(state=initialState, action) {
       return {...state, currentTweet: action.payload};
     case "REMOVE_CURRENT_TWEET":
       return {...state, currentTweet: action.payload};
+    case "UPDATE_TWEETS":
+      return {...state, tweets: action.payload};
     default:
       return state;
   }
