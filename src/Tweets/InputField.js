@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form } from 'semantic-ui-react';
 import { connect } from "react-redux";
-import updateTweets from "../actions/actions.js";
+import { updateTweets } from "../actions/actions.js";
 
 class InputField extends React.Component {
   constructor() {
@@ -30,6 +30,7 @@ class InputField extends React.Component {
       .then(response => response.json())
       .then(data => {
         const newTweets = [...this.props.tweets, data];
+        
         this.props.updateTweets(newTweets);
       });
   }
@@ -41,6 +42,7 @@ class InputField extends React.Component {
   }
 
   render() {
+    console.log("inside inputfield", this.props)
     return(
       <Form onSubmit={(event) => this.handleSubmit(event)}>
         <Form.Field>
