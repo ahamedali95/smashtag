@@ -8,14 +8,27 @@ const TweetCollection = (props) => {
   const tweetCards = filteredTweetsByTerm.map(tweet => <Tweet key={tweet.id} tweet={tweet}/>);
 
   return(
-    <div>{tweetCards}</div>
+    <div>
+      {
+        !props.currentTweet ?
+          <React.Fragment>{tweetCards}</React.Fragment>
+            :
+          <React.Fragment>
+            <Tweet
+              key={props.currentTweet.id}
+              tweet={props.currentTweet}>
+            </Tweet>
+          </React.Fragment>
+      }
+    </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
     tweets: state.tweets,
-    searchTerm: state.searchTerm
+    searchTerm: state.searchTerm,
+    currentTweet: state.currentTweet
   };
 }
 

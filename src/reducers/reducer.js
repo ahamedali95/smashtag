@@ -1,7 +1,8 @@
 const initialState = {
   users: [],
   tweets: [],
-  searchTerm: ""
+  searchTerm: "",
+  currentTweet: null
 };
 
 function reducer(state=initialState, action) {
@@ -11,6 +12,8 @@ function reducer(state=initialState, action) {
       return {...state, tweets: action.payload.tweets, users: action.payload.users};
     case "UPDATE_SEARCH_TERM":
       return {...state, searchTerm: action.payload};
+    case "SET_CURRENT_TWEET":
+      return {...state, currentTweet: action.payload}
     default:
       return state;
   }

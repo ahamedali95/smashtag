@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Feed, Icon } from 'semantic-ui-react';
+import { setCurrentTweet } from "../actions/actions.js";
 
 const Tweet = (props) => {
   console.log("inside tweet", props)
@@ -15,7 +16,7 @@ const Tweet = (props) => {
           <Feed.Summary>
             <Feed.User>{`${user.first_name} ${user.last_name} @${user.username}`}</Feed.User>
           </Feed.Summary>
-        <Feed.Extra text>{props.tweet.content}</Feed.Extra>
+        <Feed.Extra text onClick={(event) => props.setCurrentTweet(props.tweet)}>{props.tweet.content}</Feed.Extra>
           <Feed.Meta>
             <Feed.Like>
               <Icon name='like' color="red"/>
@@ -34,4 +35,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Tweet);
+function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentTweet: (tweet) => {
+      dispatch(setCurrentTweet(tweet));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tweet);

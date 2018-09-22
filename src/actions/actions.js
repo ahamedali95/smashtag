@@ -15,7 +15,15 @@ const updateSearchTerm = (searchTerm) => {
   };
 }
 
+const setCurrentTweet = (tweet) => {
+  return {
+    type: "SET_CURRENT_TWEET",
+    payload: tweet
+  }
+}
+
 module.exports = {
   setTweetsAndUsers,
-  updateSearchTerm
+  updateSearchTerm,
+  setCurrentTweet
 };
