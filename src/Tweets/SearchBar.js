@@ -8,6 +8,7 @@ const SearchBar = (props) => {
   return(
     <Search
       value={props.searchTerm}
+      placeholder="Search Twitter"
       onSearchChange={(event => props.updateSearchTerm(event.target.value))}
     />
   );

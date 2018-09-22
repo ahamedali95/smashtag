@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Feed, Icon, Button } from 'semantic-ui-react';
 import { setCurrentTweet, removeCurrentTweet } from "../actions/actions.js";
+import Moment from 'react-moment';
 
 const Tweet = (props) => {
   console.log("inside tweet", props)
@@ -9,8 +10,9 @@ const Tweet = (props) => {
     return user.id === props.tweet.user_id;
   });
 
-  return (
+  const postedDate = props.tweet.created_at
 
+  return (
     <Feed size="large">
       <Feed.Event>
         <Feed.Content>
@@ -23,6 +25,12 @@ const Tweet = (props) => {
               <Icon name='like' color="red"/>
                 0 Likes
             </Feed.Like>
+            {
+              !!props.currentTweet ?
+                <Feed.Date><Moment format="DD-MMM-YYYY">{props.tweet.created_at}</Moment></Feed.Date>
+                :
+                null
+            }
           </Feed.Meta>
           <div>
           {

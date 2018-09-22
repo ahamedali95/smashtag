@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar.js";
 import TweetCollection from "./TweetCollection.js"
 import { connect } from "react-redux";
 import { setTweetsAndUsers } from "../actions/actions.js";
+import InputField from "./InputField.js";
 
 class TweetContainer extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class TweetContainer extends Component {
     return(
       <div>
         <SearchBar/>
+        <InputField/>
         <TweetCollection />
       </div>
     );
