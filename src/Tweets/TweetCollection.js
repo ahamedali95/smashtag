@@ -4,16 +4,18 @@ import Tweet from "./Tweet.js";
 
 const TweetCollection = (props) => {
   //console.log("inside tweetcollection", props);
-  const tweets = props.tweets.map(tweet => <Tweet key={tweet.id} tweet={tweet}/>);
+  const filteredTweetsByTerm = props.tweets.filter(tweet => tweet.content.indexOf(props.searchTerm) !== -1);
+  const tweetCards = filteredTweetsByTerm.map(tweet => <Tweet key={tweet.id} tweet={tweet}/>);
 
   return(
-    <div>{tweets}</div>
+    <div>{tweetCards}</div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    tweets: state.tweets
+    tweets: state.tweets,
+    searchTerm: state.searchTerm
   };
 }
 
