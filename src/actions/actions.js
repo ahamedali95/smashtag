@@ -22,8 +22,16 @@ const setCurrentTweet = (tweet) => {
   }
 }
 
+const removeCurrentTweet = () => {
+  return {
+    type: "REMOVE_CURRENT_TWEET",
+    payload: null
+  }
+}
+
 module.exports = {
   setTweetsAndUsers,
   updateSearchTerm,
-  setCurrentTweet
+  setCurrentTweet,
+  removeCurrentTweet
 };

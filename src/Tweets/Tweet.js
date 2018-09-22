@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Feed, Icon } from 'semantic-ui-react';
-import { setCurrentTweet } from "../actions/actions.js";
+import { Feed, Icon, Button } from 'semantic-ui-react';
+import { setCurrentTweet, removeCurrentTweet } from "../actions/actions.js";
 
 const Tweet = (props) => {
   console.log("inside tweet", props)
@@ -10,6 +10,7 @@ const Tweet = (props) => {
   });
 
   return (
+
     <Feed size="large">
       <Feed.Event>
         <Feed.Content>
@@ -23,6 +24,16 @@ const Tweet = (props) => {
                 0 Likes
             </Feed.Like>
           </Feed.Meta>
+          <div>
+          {
+            !!props.currentTweet ?
+              <Button icon onClick={(event) => props.removeCurrentTweet()}>
+                <Icon name="backward" />
+              </Button>
+              :
+              null
+          }
+          </div>
         </Feed.Content>
       </Feed.Event>
     </Feed>
@@ -31,7 +42,8 @@ const Tweet = (props) => {
 
 function mapStateToProps(state) {
   return {
-    users: state.users
+    users: state.users,
+    currentTweet: state.currentTweet
   };
 }
 
@@ -39,6 +51,9 @@ function mapDispatchToProps(dispatch) {
   return {
     setCurrentTweet: (tweet) => {
       dispatch(setCurrentTweet(tweet));
+    },
+    removeCurrentTweet: () => {
+      dispatch(removeCurrentTweet());
     }
   };
 }
