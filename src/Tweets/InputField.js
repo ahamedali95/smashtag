@@ -28,11 +28,17 @@ class InputField extends React.Component {
 
     fetch("http://localhost:3001/api/v1/tweets", config)
       .then(response => response.json())
-      .then(data => {
-        const newTweets = [data, ...this.props.tweets];
+      .then(data => this.resetFormAndUpdateTweets(data));
+  }
 
-        this.props.updateTweets(newTweets);
-      });
+  resetFormAndUpdateTweets(tweet) {
+    this.setState({
+      content: ""
+    }, () => {
+      const newTweets = [tweet, ...this.props.tweets];
+
+      this.props.updateTweets(newTweets);
+    });
   }
 
   handleChange(event) {
